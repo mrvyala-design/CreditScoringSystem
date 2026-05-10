@@ -2,6 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import model.enums.ApplicationStatus;
 
 @Entity
 @Table(name = "credit_applications")
@@ -21,7 +22,8 @@ public class CreditApplication {
     @Column(name = "term_months")
     private Integer termMonths;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ApplicationStatus status;
 
     @ManyToOne
     @JoinColumn(name = "client_id")

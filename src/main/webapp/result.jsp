@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="model.CreditApplication" %>
+<%@ page import="model.enums.ApplicationStatus" %>
 
 <%
     CreditApplication result =
@@ -9,11 +10,11 @@
 <%
     String color = "black";
 
-    if (result.getStatus().equals("APPROVED")) {
+    if (result.getStatus() == ApplicationStatus.APPROVED) {
         color = "green";
-    } else if (result.getStatus().equals("REJECTED")) {
+    } else if (result.getStatus() == ApplicationStatus.REJECTED) {
         color = "red";
-    } else if (result.getStatus().equals("MANUAL")) {
+    } else if (result.getStatus() == ApplicationStatus.MANUAL_REVIEW) {
         color = "orange";
     }
 %>

@@ -7,6 +7,7 @@ import dao.CreditApplicationDaoImpl;
 import jakarta.persistence.EntityManager;
 import model.Client;
 import model.CreditApplication;
+import model.enums.ApplicationStatus;
 import util.HibernateUtil;
 
 public class CreditScoringServiceImpl implements CreditScoringService {
@@ -32,7 +33,7 @@ public class CreditScoringServiceImpl implements CreditScoringService {
 
             int score = calculator.calculateScore(client, amount);
 
-            String decision = calculator.calculateDecision(score);
+            ApplicationStatus decision = calculator.calculateDecision(score);
 
             CreditApplication application = CreditApplication.builder()
                     .client(client)

@@ -1,6 +1,7 @@
 package service;
 
 import model.Client;
+import model.enums.ApplicationStatus;
 import service.rules.ScoringRule;
 import service.rules.impl.*;
 
@@ -28,14 +29,14 @@ public class ScoringCalculator {
         return score;
     }
 
-    public String calculateDecision(int score) {
+    public ApplicationStatus calculateDecision(int score) {
 
         if (score >= 70) {
-            return "APPROVED";
+            return ApplicationStatus.APPROVED;
         } else if (score >= 40) {
-            return "MANUAL_REVIEW";
+            return ApplicationStatus.MANUAL_REVIEW;
         } else {
-            return "REJECTED";
+            return ApplicationStatus.REJECTED;
         }
     }
 }
