@@ -2,7 +2,6 @@ package dao;
 
 import jakarta.persistence.EntityManager;
 import model.CreditApplication;
-import util.HibernateUtil;
 
 import java.io.Serializable;
 

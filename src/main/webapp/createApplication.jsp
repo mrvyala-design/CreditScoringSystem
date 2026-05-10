@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>Создание заявки</title>
+    <title>Создание заявки</title>
 </head>
 
 <body>
@@ -11,13 +11,13 @@
 
 <form action="application" method="post">
 
-  ID клиента: <input type="text" name="clientId"><br><br>
+    ID клиента: <input type="text" name="clientId"><br><br>
 
-  Сумма кредита: <input type="text" name="amount"><br><br>
+    Сумма кредита: <input type="text" name="amount"><br><br>
 
-  Срок (мес): <input type="text" name="term"><br><br>
+    Срок (мес): <input type="text" name="term"><br><br>
 
-  <button type="submit">Отправить заявку</button>
+    <button type="submit">Отправить заявку</button>
 
 </form>
 
