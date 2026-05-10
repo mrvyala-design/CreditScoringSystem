@@ -1,7 +1,7 @@
 package util;
 
-import dao.ClientDao;
-import dao.ClientDaoImpl;
+import dao.ClientDAO;
+import dao.impl.ClientDAOImpl;
 import jakarta.persistence.EntityManager;
 import model.Client;
 import model.CreditHistory;
@@ -16,7 +16,7 @@ public class DataInitializer {
 
     private static final Random random = new Random();
 
-    private final ClientDao clientDao = new ClientDaoImpl();
+    private final ClientDAO clientDao = new ClientDAOImpl();
 
     public void init() {
 

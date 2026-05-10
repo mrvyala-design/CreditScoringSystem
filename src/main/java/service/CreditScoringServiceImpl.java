@@ -1,9 +1,9 @@
 package service;
 
-import dao.ClientDao;
-import dao.ClientDaoImpl;
-import dao.CreditApplicationDao;
-import dao.CreditApplicationDaoImpl;
+import dao.ClientDAO;
+import dao.impl.ClientDAOImpl;
+import dao.CreditApplicationDAO;
+import dao.impl.CreditApplicationDAOImpl;
 import jakarta.persistence.EntityManager;
 import model.Client;
 import model.CreditApplication;
@@ -12,8 +12,8 @@ import util.HibernateUtil;
 
 public class CreditScoringServiceImpl implements CreditScoringService {
 
-    private final ClientDao clientDao = new ClientDaoImpl();
-    private final CreditApplicationDao applicationDao = new CreditApplicationDaoImpl();
+    private final ClientDAO clientDao = new ClientDAOImpl();
+    private final CreditApplicationDAO applicationDao = new CreditApplicationDAOImpl();
     private final ScoringCalculator calculator = new ScoringCalculator();
 
     @Override
