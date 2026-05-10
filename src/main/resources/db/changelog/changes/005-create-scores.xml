@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="5-create-scores" author="Evgeny">
+
+        <createTable tableName="credit_scores">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+
+            <column name="application_id" type="BIGINT"/>
+            <column name="score" type="INT"/>
+            <column name="decision" type="VARCHAR(50)"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="credit_scores"
+                baseColumnNames="application_id"
+                referencedTableName="credit_applications"
+                referencedColumnNames="id"
+                constraintName="fk_scores_application"/>
+
+        <addUniqueConstraint tableName="credit_scores"
+                             columnNames="application_id"/>
+
+    </changeSet>
+
+</databaseChangeLog>
