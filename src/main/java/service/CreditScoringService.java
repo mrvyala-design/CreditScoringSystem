@@ -1,8 +1,9 @@
 package service;
 
+import dto.CreditDecisionDTO;
 import model.CreditApplication;
 
 public interface CreditScoringService {
 
-    CreditApplication applyForCredit(Long clientId, int amount, int termMonths);
+    CreditDecisionDTO applyForCredit(Long clientId, int amount, int termMonths);
 }

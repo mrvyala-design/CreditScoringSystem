@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="model.CreditApplication" %>
+<%@ page import="dto.CreditDecisionDTO" %>
 <%@ page import="model.enums.ApplicationStatus" %>
 
 <%
-    CreditApplication result =
-            (CreditApplication) request.getAttribute("result");
+    CreditDecisionDTO result =
+            (CreditDecisionDTO) request.getAttribute("result");
 %>
 
 <%

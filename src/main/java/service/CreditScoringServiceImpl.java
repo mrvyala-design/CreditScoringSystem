@@ -1,9 +1,11 @@
 package service;
 
+import converter.CreditDecisionConverter;
 import dao.ClientDAO;
 import dao.impl.ClientDAOImpl;
 import dao.CreditApplicationDAO;
 import dao.impl.CreditApplicationDAOImpl;
+import dto.CreditDecisionDTO;
 import jakarta.persistence.EntityManager;
 import model.Client;
 import model.CreditApplication;
@@ -15,9 +17,10 @@ public class CreditScoringServiceImpl implements CreditScoringService {
     private final ClientDAO clientDao = new ClientDAOImpl();
     private final CreditApplicationDAO applicationDao = new CreditApplicationDAOImpl();
     private final ScoringCalculator calculator = new ScoringCalculator();
+    private final CreditDecisionConverter converter = new CreditDecisionConverter();
 
     @Override
-    public CreditApplication applyForCredit(Long clientId, int amount, int termMonths) {
+    public CreditDecisionDTO applyForCredit(Long clientId, int amount, int termMonths) {
 
         EntityManager entityManager = HibernateUtil.getEntityManager();
 
@@ -46,7 +49,7 @@ public class CreditScoringServiceImpl implements CreditScoringService {
 
             entityManager.getTransaction().commit();
 
-            return application;
+            return converter.toDTO(application, score);
 
         } finally {
             entityManager.close();

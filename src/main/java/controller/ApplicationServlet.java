@@ -1,5 +1,6 @@
 package controller;
 
+import dto.CreditDecisionDTO;
 import model.CreditApplication;
 import service.CreditScoringService;
 import service.CreditScoringServiceImpl;
@@ -21,7 +22,7 @@ public class ApplicationServlet extends HttpServlet {
         int amount = Integer.parseInt(req.getParameter("amount"));
         int term = Integer.parseInt(req.getParameter("term"));
 
-        CreditApplication result =
+        CreditDecisionDTO result =
                 service.applyForCredit(clientId, amount, term);
 
         req.setAttribute("result", result);

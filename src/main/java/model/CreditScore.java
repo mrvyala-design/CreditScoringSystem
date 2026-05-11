@@ -2,6 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import model.enums.ApplicationStatus;
 
 @Entity
 @Table(name = "credit_scores")
@@ -18,7 +19,8 @@ public class CreditScore {
 
     private Integer score;
 
-    private String decision;
+    @Enumerated(EnumType.STRING)
+    private ApplicationStatus status;
 
     @OneToOne
     @JoinColumn(name = "application_id", unique = true)
