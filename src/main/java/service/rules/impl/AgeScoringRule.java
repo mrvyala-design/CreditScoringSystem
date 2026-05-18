@@ -2,6 +2,7 @@ package service.rules.impl;
 
 import model.Client;
 import service.rules.ScoringRule;
+import static util.Constants.*;
 
 import java.time.LocalDate;
 
@@ -12,12 +13,12 @@ public class AgeScoringRule implements ScoringRule {
 
         int age = LocalDate.now().getYear() - client.getBirthDate().getYear();
 
-        if (age < 21) {
-            return -20;
-        } else if (age <= 60) {
-            return 10;
+        if (age < MIN_AGE) {
+            return AGE_YOUNG_PENALTY;
+        } else if (age <= MAX_GOOD_AGE) {
+            return AGE_GOOD_BONUS;
         } else {
-            return -10;
+            return AGE_OLD_PENALTY;
         }
     }
 }

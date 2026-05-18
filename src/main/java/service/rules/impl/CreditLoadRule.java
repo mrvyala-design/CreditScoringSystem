@@ -4,6 +4,8 @@ import model.Client;
 import model.Employment;
 import service.rules.ScoringRule;
 
+import static util.Constants.*;
+
 public class CreditLoadRule implements ScoringRule {
 
     @Override
@@ -15,12 +17,12 @@ public class CreditLoadRule implements ScoringRule {
 
         int ratio = amount / salary;
 
-        if (ratio > 10) {
-            return -30;
-        } else if (ratio > 5) {
-            return -10;
+        if (ratio > HIGH_CREDIT_LOAD) {
+            return HIGH_CREDIT_LOAD_PENALTY;
+        } else if (ratio > MEDIUM_CREDIT_LOAD) {
+            return MEDIUM_CREDIT_LOAD_PENALTY;
         } else {
-            return 10;
+            return LOW_CREDIT_LOAD_BONUS;
         }
     }
 }

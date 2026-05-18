@@ -4,6 +4,8 @@ import model.Client;
 import model.Employment;
 import service.rules.ScoringRule;
 
+import static util.Constants.*;
+
 import java.util.List;
 
 public class SalaryScoringRule implements ScoringRule {
@@ -14,17 +16,17 @@ public class SalaryScoringRule implements ScoringRule {
         List<Employment> jobs = client.getEmployments();
 
         if (jobs.isEmpty()) {
-            return -100;
+            return NO_JOB_PENALTY;
         }
 
         int salary = jobs.get(0).getSalary();
 
-        if (salary > 3500) {
-            return 50;
-        } else if (salary > 2500) {
-            return 30;
+        if (salary > HIGH_SALARY) {
+            return HIGH_SALARY_BONUS;
+        } else if (salary > MEDIUM_SALARY) {
+            return MEDIUM_SALARY_BONUS;
         } else {
-            return 10;
+            return LOW_SALARY_BONUS;
         }
     }
 }

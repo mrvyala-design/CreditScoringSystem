@@ -4,6 +4,8 @@ import model.Client;
 import model.CreditHistory;
 import service.rules.ScoringRule;
 
+import static util.Constants.*;
+
 public class ActiveLoansRule implements ScoringRule {
 
     @Override
@@ -12,17 +14,17 @@ public class ActiveLoansRule implements ScoringRule {
         CreditHistory creditHistory = client.getCreditHistory();
 
         if (creditHistory == null) {
-            return 0;
+            return NO_CREDIT_HISTORY_PENALTY;
         }
 
         int activeLoans = creditHistory.getActiveLoans();
 
-        if (activeLoans > 3) {
-            return -30;
+        if (activeLoans > MANY_ACTIVE_LOANS) {
+            return MANY_ACTIVE_LOANS_PENALTY;
         } else if (activeLoans > 0) {
-            return -10;
+            return ACTIVE_LOANS_PENALTY;
         } else {
-            return 10;
+            return NO_ACTIVE_LOANS_BONUS;
         }
     }
 }

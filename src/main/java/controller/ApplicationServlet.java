@@ -1,7 +1,6 @@
 package controller;
 
 import dto.CreditDecisionDTO;
-import model.CreditApplication;
 import service.CreditScoringService;
 import service.CreditScoringServiceImpl;
 

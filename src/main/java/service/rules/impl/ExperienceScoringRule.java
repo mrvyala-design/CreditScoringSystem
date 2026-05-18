@@ -4,6 +4,8 @@ import model.Client;
 import model.Employment;
 import service.rules.ScoringRule;
 
+import static util.Constants.*;
+
 public class ExperienceScoringRule implements ScoringRule {
 
     @Override
@@ -13,12 +15,12 @@ public class ExperienceScoringRule implements ScoringRule {
 
         int years = job.getExperienceYears();
 
-        if (years < 1) {
-            return -20;
-        } else if (years <= 3) {
-            return 10;
+        if (years < MIN_EXPERIENCE) {
+            return LOW_EXPERIENCE_PENALTY;
+        } else if (years <= GOOD_EXPERIENCE) {
+            return MEDIUM_EXPERIENCE_BONUS;
         } else {
-            return 20;
+            return HIGH_EXPERIENCE_BONUS;
         }
     }
 }

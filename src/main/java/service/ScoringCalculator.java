@@ -5,6 +5,8 @@ import model.enums.ApplicationStatus;
 import service.rules.ScoringRule;
 import service.rules.impl.*;
 
+import static util.Constants.*;
+
 import java.util.List;
 
 public class ScoringCalculator {
@@ -31,9 +33,9 @@ public class ScoringCalculator {
 
     public ApplicationStatus calculateDecision(int score) {
 
-        if (score >= 70) {
+        if (score >= APPROVED_SCORE) {
             return ApplicationStatus.APPROVED;
-        } else if (score >= 40) {
+        } else if (score >= MANUAL_REVIEW_SCORE) {
             return ApplicationStatus.MANUAL_REVIEW;
         } else {
             return ApplicationStatus.REJECTED;

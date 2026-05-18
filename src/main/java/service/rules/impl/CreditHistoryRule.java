@@ -3,6 +3,7 @@ package service.rules.impl;
 import model.Client;
 import model.CreditHistory;
 import service.rules.ScoringRule;
+import static util.Constants.*;
 
 public class CreditHistoryRule implements ScoringRule {
 
@@ -12,13 +13,13 @@ public class CreditHistoryRule implements ScoringRule {
         CreditHistory creditHistory = client.getCreditHistory();
 
         if (creditHistory == null) {
-            return 0;
+            return NO_CREDIT_HISTORY_PENALTY;
         }
 
         if (creditHistory.getOverdueCount() == 0) {
-            return 30;
+            return GOOD_CREDIT_HISTORY_BONUS;
         } else {
-            return -20;
+            return BAD_CREDIT_HISTORY_PENALTY;
         }
     }
 }
