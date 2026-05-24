@@ -6,6 +6,10 @@ import dao.impl.ClientDAOImpl;
 import dao.CreditApplicationDAO;
 import dao.impl.CreditApplicationDAOImpl;
 import dto.CreditDecisionDTO;
+import exceptions.ClientNotFoundException;
+import exceptions.InvalidCreditAmountException;
+import exceptions.InvalidCreditTermException;
+import exceptions.ScoringCalculationException;
 import jakarta.persistence.EntityManager;
 import model.Client;
 import model.CreditApplication;
@@ -28,13 +32,26 @@ public class CreditScoringServiceImpl implements CreditScoringService {
         try {
             entityManager.getTransaction().begin();
 
+            if (amount <= 0) {
+                throw new InvalidCreditAmountException(amount);
+            }
+
+            if (termMonths <= 0) {
+                throw new InvalidCreditTermException(termMonths);
+            }
+
             Client client = clientDao.get(entityManager, clientId);
 
             if (client == null) {
-                throw new RuntimeException("Client not found with id: " + clientId);
+                throw new ClientNotFoundException(clientId);
             }
 
-            int score = calculator.calculateScore(client, amount);
+            int score;
+            try {
+                score = calculator.calculateScore(client, amount);
+            } catch (Exception e) {
+                throw new ScoringCalculationException("Scoring calculation failed");
+            }
 
             ApplicationStatus decision = calculator.calculateDecision(score);
 
