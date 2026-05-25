@@ -11,11 +11,13 @@ import exceptions.InvalidCreditAmountException;
 import exceptions.InvalidCreditTermException;
 import exceptions.ScoringCalculationException;
 import jakarta.persistence.EntityManager;
+import lombok.extern.slf4j.Slf4j;
 import model.Client;
 import model.CreditApplication;
 import model.enums.ApplicationStatus;
 import util.HibernateUtil;
 
+@Slf4j
 public class CreditScoringServiceImpl implements CreditScoringService {
 
     private final ClientDAO clientDao = new ClientDAOImpl();
@@ -40,6 +42,8 @@ public class CreditScoringServiceImpl implements CreditScoringService {
                 throw new InvalidCreditTermException(termMonths);
             }
 
+            log.info("Searching client with id {}", clientId);
+
             Client client = clientDao.get(entityManager, clientId);
 
             if (client == null) {
@@ -49,6 +53,7 @@ public class CreditScoringServiceImpl implements CreditScoringService {
             int score;
             try {
                 score = calculator.calculateScore(client, amount);
+                log.info("Calculated score {} for client {}", score, clientId);
             } catch (Exception e) {
                 throw new ScoringCalculationException("Scoring calculation failed");
             }
@@ -66,10 +71,13 @@ public class CreditScoringServiceImpl implements CreditScoringService {
 
             entityManager.getTransaction().commit();
 
+            log.info("Application saved successfully. Decision = {}", decision);
+
             return converter.toDTO(application, score);
 
         } finally {
             entityManager.close();
+
         }
     }
 }
