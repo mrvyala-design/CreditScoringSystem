@@ -37,7 +37,7 @@ public class DataInitializer {
                 client.setBirthDate(LocalDate.now().minusYears(age));
 
                 Employment employment = new Employment();
-                employment.setSalary(1000 + random.nextInt(5000));
+                employment.setSalary(1000 + random.nextDouble() * 7000);
                 employment.setExperienceYears(random.nextInt(10));
                 employment.setClient(client);
 
@@ -46,7 +46,7 @@ public class DataInitializer {
                 client.setEmployments(jobs);
 
                 CreditHistory history = new CreditHistory();
-                history.setActiveLoans(random.nextInt(5));
+                history.setActiveLoans(random.nextInt(3));
                 history.setOverdueCount(random.nextInt(3));
                 history.setClient(client);
 

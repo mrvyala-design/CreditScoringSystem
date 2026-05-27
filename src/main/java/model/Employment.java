@@ -16,7 +16,7 @@ public class Employment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer salary;
+    private double salary;
 
     @Column(name = "experience_years")
     private Integer experienceYears;

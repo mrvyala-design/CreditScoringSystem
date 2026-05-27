@@ -19,7 +19,7 @@ public class SalaryScoringRule implements ScoringRule {
             return NO_JOB_PENALTY;
         }
 
-        int salary = jobs.get(0).getSalary();
+        double salary = jobs.get(0).getSalary();
 
         if (salary > HIGH_SALARY) {
             return HIGH_SALARY_BONUS;

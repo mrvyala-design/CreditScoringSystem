@@ -13,9 +13,9 @@ public class CreditLoadRule implements ScoringRule {
 
         Employment job = client.getEmployments().get(0);
 
-        int salary = job.getSalary();
+        double salary = job.getSalary();
 
-        int ratio = amount / salary;
+        double ratio = amount / salary;
 
         if (ratio > HIGH_CREDIT_LOAD) {
             return HIGH_CREDIT_LOAD_PENALTY;

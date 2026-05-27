@@ -18,7 +18,7 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="salary" type="INT"/>
+            <column name="salary" type="DOUBLE"/>
             <column name="experience_years" type="INT"/>
         </createTable>
 
