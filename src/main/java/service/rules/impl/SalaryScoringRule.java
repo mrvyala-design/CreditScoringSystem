@@ -15,7 +15,7 @@ public class SalaryScoringRule implements ScoringRule {
 
         List<Employment> jobs = client.getEmployments();
 
-        if (jobs.isEmpty()) {
+        if (jobs == null || jobs.isEmpty()) {
             return NO_JOB_PENALTY;
         }
 

@@ -15,8 +15,8 @@ public final class Constants {
     public static final int AGE_GOOD_BONUS = 10;
     public static final int AGE_OLD_PENALTY = -10;
 
-    public static final int HIGH_SALARY = 3500;
-    public static final int MEDIUM_SALARY = 2500;
+    public static final double HIGH_SALARY = 3500;
+    public static final double MEDIUM_SALARY = 2500;
 
     public static final int HIGH_SALARY_BONUS = 50;
     public static final int MEDIUM_SALARY_BONUS = 30;
