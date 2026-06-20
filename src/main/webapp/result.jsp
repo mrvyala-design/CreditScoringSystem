@@ -1,23 +1,6 @@
+<%@ taglib prefix="c"
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="dto.CreditDecisionDTO" %>
-<%@ page import="model.enums.ApplicationStatus" %>
-
-<%
-    CreditDecisionDTO result =
-            (CreditDecisionDTO) request.getAttribute("result");
-%>
-
-<%
-    String color = "black";
-
-    if (result.getStatus() == ApplicationStatus.APPROVED) {
-        color = "green";
-    } else if (result.getStatus() == ApplicationStatus.REJECTED) {
-        color = "red";
-    } else if (result.getStatus() == ApplicationStatus.MANUAL_REVIEW) {
-        color = "orange";
-    }
-%>
 
 <html>
 <head>
@@ -28,16 +11,35 @@
 
 <h2>Результат скоринга</h2>
 
-<p>Сумма: <%= result.getAmount() %>
+<p>
+    Сумма: ${result.amount}
 </p>
 
-<p>Срок: <%= result.getTermMonths() %>
+<p>
+    Срок: ${result.termMonths}
 </p>
 
-<p style="color: <%= color %>;">
-    Статус: <b><%= result.getStatus() %>
-</b>
-</p>
+<c:choose>
+
+    <c:when test="${result.status == 'APPROVED'}">
+        <p style="color: green;">
+            Статус: <b>${result.status}</b>
+        </p>
+    </c:when>
+
+    <c:when test="${result.status == 'REJECTED'}">
+        <p style="color: red;">
+            Статус: <b>${result.status}</b>
+        </p>
+    </c:when>
+
+    <c:otherwise>
+        <p style="color: orange;">
+            Статус: <b>${result.status}</b>
+        </p>
+    </c:otherwise>
+
+</c:choose>
 
 <br>
 

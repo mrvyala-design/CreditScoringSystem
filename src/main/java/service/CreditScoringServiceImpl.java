@@ -77,7 +77,6 @@ public class CreditScoringServiceImpl implements CreditScoringService {
 
         } finally {
             entityManager.close();
-
         }
     }
 }

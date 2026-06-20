@@ -19,6 +19,7 @@
         <liquibase.version>4.27.0</liquibase.version>
         <servlet.version>4.0.1</servlet.version>
         <jsp.verion>2.3.3</jsp.verion>
+        <jstl.version>1.2</jstl.version>
         <lombok.version>1.18.44</lombok.version>
         <slf4j.version>2.0.13</slf4j.version>
         <logback.version>1.5.6</logback.version>
@@ -73,6 +74,12 @@
             <artifactId>javax.servlet.jsp-api</artifactId>
             <version>${jsp.verion}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
 
         <dependency>
